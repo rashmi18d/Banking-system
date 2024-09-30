@@ -1,0 +1,95 @@
+{
+  "success": true,
+  "data": {
+    "totalRecords": 9,
+    "totalPages": 2,
+    "currentPage": 1,
+    "currentPageCount": 5,
+    "data": [
+      {
+        "customerName": "Anshul trading Company",
+        "customerId": "1000",
+        "totalInvoices": "212",
+        "overDueInvoices": "212",
+        "overDueAmount": "94934079.50",
+        "outstandingAmount": "94934079.50",
+        "creditOrDebitNote": "Yes"
+      },
+      {
+        "customerName": "OMEGA GLASS PRIVATE LIMITED",
+        "customerId": "388",
+        "totalInvoices": "5",
+        "overDueInvoices": "5",
+        "overDueAmount": "99658.00",
+        "outstandingAmount": "99658.00",
+        "creditOrDebitNote": "No"
+      },
+      {
+        "customerName": "RAJEEV  & ENTERPRISES",
+        "customerId": "387",
+        "totalInvoices": "1",
+        "overDueInvoices": "1",
+        "overDueAmount": "50000.00",
+        "outstandingAmount": "50000.00",
+        "creditOrDebitNote": "No"
+      },
+      {
+        "customerName": "GLOWWELL SIGN",
+        "customerId": "392",
+        "totalInvoices": "1",
+        "overDueInvoices": "1",
+        "overDueAmount": "50000.00",
+        "outstandingAmount": "50000.00",
+        "creditOrDebitNote": "No"
+      },
+      {
+        "customerName": "MANOJ AUTO MOBILES",
+        "customerId": "393",
+        "totalInvoices": "1",
+        "overDueInvoices": "1",
+        "overDueAmount": "50000.00",
+        "outstandingAmount": "50000.00",
+        "creditOrDebitNote": "No"
+      },
+      {
+        "customerName": "Ramprasad and center",
+        "customerId": "100186",
+        "totalInvoices": "1",
+        "overDueInvoices": "1",
+        "overDueAmount": "10102.00",
+        "outstandingAmount": "10102.00",
+        "creditOrDebitNote": "No"
+      },
+      {
+        "customerName": "New Pharma company",
+        "customerId": "100196",
+        "totalInvoices": "1",
+        "overDueInvoices": "1",
+        "overDueAmount": "10000.00",
+        "outstandingAmount": "10000.00",
+        "creditOrDebitNote": "No"
+      },
+      {
+        "customerName": "SHILPI BATH DCOS & distributor",
+        "customerId": "394",
+        "totalInvoices": "386",
+        "overDueInvoices": "386",
+        "overDueAmount": "-524672326.11",
+        "outstandingAmount": "-524672326.11",
+        "creditOrDebitNote": "Yes"
+      },
+      {
+        "customerName": "SCOPE & VINTRADE",
+        "customerId": "389",
+        "totalInvoices": "166",
+        "overDueInvoices": "166",
+        "overDueAmount": "-5695223766.00",
+        "outstandingAmount": "-5695223766.00",
+        "creditOrDebitNote": "No"
+      }
+    ],
+    "totalAmount": "-6124692252.61",
+    "numberOfInvoices": "774",
+    "numberOfCustomers": "9"
+  }
+}
