@@ -9,9 +9,15 @@ interface AccordionProps {
   hasCheckbox: boolean;
   id: string | number;
   children: React.ReactNode;
+  customerDetails: Object;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ hasCheckbox, id, children }) => {
+const Accordion: React.FC<AccordionProps> = ({
+  customerDetails,
+  hasCheckbox,
+  id,
+  children,
+}) => {
   const [expandedAccordion, setExpandedAccordion] = useState<string | number>(
     ""
   );
@@ -35,7 +41,7 @@ const Accordion: React.FC<AccordionProps> = ({ hasCheckbox, id, children }) => {
       </div>
       {expandedAccordion === id && (
         <div>
-          <SimpleTable />
+          <SimpleTable customerDetails={customerDetails} />
         </div>
       )}
     </div>

@@ -11,6 +11,7 @@ const CustomerDetails = () => {
             hasCheckbox={true}
             id={customer.customerId}
             key={customer.customerId}
+            customerDetails={customer}
           >
             <div className={styles.customerName}>{customer.customerName}</div>
             <div className={styles.accordionContent}>

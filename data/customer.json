@@ -13,7 +13,161 @@
         "overDueInvoices": "212",
         "overDueAmount": "94934079.50",
         "outstandingAmount": "94934079.50",
-        "creditOrDebitNote": "Yes"
+        "creditOrDebitNote": "Yes",
+        "invoices": {
+          "data": {
+            "totalPages": 1,
+            "totalRecords": 212,
+            "currentPage": 1,
+            "currentPageCount": 999999,
+            "totalAmount": "94934079.50",
+            "numberOfInvoices": 212,
+            "numberOfCustomers": 1,
+            "currency": "INR",
+            "invoices": [
+              {
+                "invoiceId": "IN1718000000492024001",
+                "invoiceNumber": "IN1718000000492024",
+                "customerName": "Anshul trading Company",
+                "invoiceDate": "",
+                "outstandingAmount": "99999999.00",
+                "dueDate": "18/04/24",
+                "status": null,
+                "lastRemainder": "25/09/24",
+                "invoiceAmount": "0.00",
+                "discount": "0.00",
+                "region": null,
+                "division": "",
+                "documentType": "DEBIT_NOTE",
+                "documentNumber": "",
+                "additionalInfo": [
+                  {
+                    "label": "Region",
+                    "value": "Tamil Nadu",
+                    "sequence": 1
+                  },
+                  {
+                    "label": "Location",
+                    "value": "",
+                    "sequence": 2
+                  }
+                ]
+              },
+              {
+                "invoiceId": "IN1718000000142017001",
+                "invoiceNumber": "IN1718000000142017",
+                "customerName": "Anshul trading Company",
+                "invoiceDate": "",
+                "outstandingAmount": "1000000.00",
+                "dueDate": "07/02/18",
+                "status": null,
+                "lastRemainder": "06/09/24",
+                "invoiceAmount": "0.00",
+                "discount": "0.00",
+                "region": null,
+                "division": "",
+                "documentType": "DEBIT_NOTE",
+                "documentNumber": "",
+                "additionalInfo": [
+                  {
+                    "label": "Region",
+                    "value": "Tamil Nadu",
+                    "sequence": 1
+                  },
+                  {
+                    "label": "Location",
+                    "value": "",
+                    "sequence": 2
+                  }
+                ]
+              },
+              {
+                "invoiceId": "IN1718000000432024001",
+                "invoiceNumber": "IN1718000000432024",
+                "customerName": "Anshul trading Company",
+                "invoiceDate": "",
+                "outstandingAmount": "350000.00",
+                "dueDate": "18/04/24",
+                "status": null,
+                "lastRemainder": "06/09/24",
+                "invoiceAmount": "0.00",
+                "discount": "0.00",
+                "region": null,
+                "division": "",
+                "documentType": "DEBIT_NOTE",
+                "documentNumber": "",
+                "additionalInfo": [
+                  {
+                    "label": "Region",
+                    "value": "Tamil Nadu",
+                    "sequence": 1
+                  },
+                  {
+                    "label": "Location",
+                    "value": "",
+                    "sequence": 2
+                  }
+                ]
+              },
+              {
+                "invoiceId": "IN1714000014322022002",
+                "invoiceNumber": "IN1714000014322022",
+                "customerName": "Anshul trading Company",
+                "invoiceDate": "",
+                "outstandingAmount": "240030.00",
+                "dueDate": "17/07/22",
+                "status": null,
+                "lastRemainder": "06/09/24",
+                "invoiceAmount": "0.00",
+                "discount": "0.00",
+                "region": null,
+                "division": "",
+                "documentType": "DEBIT_NOTE",
+                "documentNumber": "",
+                "additionalInfo": [
+                  {
+                    "label": "Region",
+                    "value": "Tamil Nadu",
+                    "sequence": 1
+                  },
+                  {
+                    "label": "Location",
+                    "value": "",
+                    "sequence": 2
+                  }
+                ]
+              },
+              {
+                "invoiceId": "IN1718000000152017001",
+                "invoiceNumber": "IN1718000000152017",
+                "customerName": "Anshul trading Company",
+                "invoiceDate": "",
+                "outstandingAmount": "100000.00",
+                "dueDate": "07/02/18",
+                "status": null,
+                "lastRemainder": "06/09/24",
+                "invoiceAmount": "0.00",
+                "discount": "0.00",
+                "region": null,
+                "division": "",
+                "documentType": "DEBIT_NOTE",
+                "documentNumber": "",
+                "additionalInfo": [
+                  {
+                    "label": "Region",
+                    "value": "Tamil Nadu",
+                    "sequence": 1
+                  },
+                  {
+                    "label": "Location",
+                    "value": "",
+                    "sequence": 2
+                  }
+                ]
+              }
+            ]
+          }
+        }
       },
       {
         "customerName": "OMEGA GLASS PRIVATE LIMITED",
