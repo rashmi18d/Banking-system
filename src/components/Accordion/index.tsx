@@ -8,28 +8,39 @@ import SimpleTable from "../TableComponent ";
 interface AccordionProps {
   hasCheckbox: boolean;
   id: string | number;
+  customerDetails: any;
+  customerName: string;
   children: React.ReactNode;
-  customerDetails: Object;
 }
 
 const Accordion: React.FC<AccordionProps> = ({
   customerDetails,
   hasCheckbox,
   id,
+  customerName,
   children,
 }) => {
   const [expandedAccordion, setExpandedAccordion] = useState<string | number>(
     ""
   );
-
+  const [isChecked, setIsChecked] = useState(false);
   const handleIconClick = (customerId: string | number) => {
     setExpandedAccordion(expandedAccordion === customerId ? "" : customerId);
+  };
+
+  const handleCheckboxChange = (checked: boolean) => {
+    setIsChecked(checked);
   };
 
   return (
     <div className={styles.accordionContainer}>
       <div key={id} className={styles.subContainer}>
-        {hasCheckbox && <CheckboxComponent />}
+        {hasCheckbox && (
+          <CheckboxComponent
+            checked={isChecked}
+            onChange={(e) => handleCheckboxChange(e.target.checked)}
+          />
+        )}
         {children}
         <FontAwesomeIcon
           onClick={() => handleIconClick(id)}
@@ -41,7 +52,11 @@ const Accordion: React.FC<AccordionProps> = ({
       </div>
       {expandedAccordion === id && (
         <div>
-          <SimpleTable customerDetails={customerDetails} />
+          <SimpleTable
+            customerDetails={customerDetails}
+            selectAll={isChecked}
+            customerName={customerName}
+          />
         </div>
       )}
     </div>

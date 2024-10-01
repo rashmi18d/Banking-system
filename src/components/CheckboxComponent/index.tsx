@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./checkbox.module.scss";
 
-const CheckboxComponent: React.FC = () => {
-  const [isChecked, setIsChecked] = useState(false);
+interface CheckBoxInterface {
+  checked: boolean;
+  onChange: () => void; // Pass the onChange handler from the parent
+}
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-
+const CheckboxComponent: React.FC<CheckBoxInterface> = ({
+  checked,
+  onChange,
+}) => {
   return (
     <div>
       <label>
         <input
           className={styles.checkboxInputContainer}
           type="checkbox"
-          checked={isChecked}
-          onChange={handleCheckboxChange}
+          checked={checked} // Use the passed checked prop
+          onChange={onChange} // Use the passed onChange handler
         />
       </label>
     </div>

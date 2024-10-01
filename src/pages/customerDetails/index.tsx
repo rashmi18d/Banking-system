@@ -12,6 +12,7 @@ const CustomerDetails = () => {
             id={customer.customerId}
             key={customer.customerId}
             customerDetails={customer}
+            customerName={customer.customerName}
           >
             <div className={styles.customerName}>{customer.customerName}</div>
             <div className={styles.accordionContent}>

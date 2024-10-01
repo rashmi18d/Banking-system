@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSort,
@@ -8,61 +8,51 @@ import {
 import CheckboxComponent from "../CheckboxComponent";
 import styles from "./simpletable.module.scss";
 
-const SimpleTable = ({ customerDetails }) => {
-  const [selectedRows, setSelectedRows] = useState<number[]>([]);
+interface SimpleTableProps {
+  customerDetails: any;
+  selectAll: boolean;
+  customerName: string;
+}
+
+const SimpleTable: React.FC<SimpleTableProps> = ({
+  customerDetails,
+  selectAll,
+  customerName,
+}) => {
+  const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [sortConfig, setSortConfig] = useState({
     key: "",
     direction: "ascending",
   });
 
-  // Sample data for the table
-  const data = customerDetails.invoices;
-  //   [
-  //     {
-  //       id: 1,
-  //       name: "Jon Snow",
-  //       age: 35,
-  //       dueDate: "2024-10-15",
-  //       outstandingAmount: 150,
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "Cersei Lannister",
-  //       age: 42,
-  //       dueDate: "2024-09-01",
-  //       outstandingAmount: 200,
-  //     },
-  //     {
-  //       id: 3,
-  //       name: "Jaime Lannister",
-  //       age: 45,
-  //       dueDate: "2024-11-05",
-  //       outstandingAmount: 100,
-  //     },
-  //     {
-  //       id: 4,
-  //       name: "Arya Stark",
-  //       age: 16,
-  //       dueDate: "2024-12-20",
-  //       outstandingAmount: 50,
-  //     },
-  //     {
-  //       id: 5,
-  //       name: "Daenerys Targaryen",
-  //       age: 29,
-  //       dueDate: "2024-10-30",
-  //       outstandingAmount: 250,
-  //     },
-  //   ];
+  const data = customerDetails?.invoices?.data?.invoices || [];
 
-  // Function to handle checkbox selection
-  const handleCheckboxChange = (id: number) => {
+  const handleCheckboxChange = (id: string) => {
     setSelectedRows((prevSelected) =>
       prevSelected.includes(id)
         ? prevSelected.filter((rowId) => rowId !== id)
         : [...prevSelected, id]
     );
   };
+
+  useEffect(() => {
+    if (selectAll) {
+      const allInvoiceIds = data
+        .filter((row: any) => row.customerName === customerName)
+        .map((row: any) => row.invoiceId);
+      setSelectedRows(allInvoiceIds);
+    } else {
+      setSelectedRows((prevSelected) =>
+        prevSelected.filter(
+          (rowId) =>
+            !data.some(
+              (row: any) =>
+                row.invoiceId === rowId && row.customerName === customerName
+            )
+        )
+      );
+    }
+  }, [selectAll, customerName, data]);
 
   const requestSort = (key: string) => {
     let direction = "ascending";
@@ -88,7 +78,6 @@ const SimpleTable = ({ customerDetails }) => {
     return sortableItems;
   }, [data, sortConfig]);
 
-  // Function to render sorting icon based on current sorting state
   const renderSortIcon = (key: string) => {
     if (sortConfig.key === key) {
       return sortConfig.direction === "ascending" ? (
@@ -105,8 +94,9 @@ const SimpleTable = ({ customerDetails }) => {
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>Invoice#</th>
-            <th> Document Details </th>
+            <th>Document Details</th>
             <th>Invoice Date</th>
             <th
               onClick={() => requestSort("outstandingAmount")}
@@ -140,13 +130,14 @@ const SimpleTable = ({ customerDetails }) => {
                   checked={selectedRows.includes(row.invoiceId)}
                   onChange={() => handleCheckboxChange(row.invoiceId)}
                 />
-                {row.invoiceId}
               </td>
-              <td>{row.IN1718000000492024}</td>
-              <td>{row.invoiceDate}</td>
-              <td>{row.outstandingAmount}</td>
-              <td>{row.dueDate}</td>
-              <td>{row.}</td>
+              <td>{row?.invoiceId || "N/A"}</td>
+              <td>{row?.documentType || "N/A"}</td>
+              <td>{row?.invoiceDate || "N/A"}</td>
+              <td>{row?.outstandingAmount || "N/A"}</td>
+              <td>{row?.dueDate || "N/A"}</td>
+              <td>{row?.status || "Pending"}</td>
+              <td>{row?.lastReminder || "N/A"}</td>
             </tr>
           ))}
         </tbody>
