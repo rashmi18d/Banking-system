@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSort,
@@ -12,12 +12,14 @@ interface SimpleTableProps {
   customerDetails: any;
   selectAll: boolean;
   customerName: string;
+  handleIntermediateChange: (checked: boolean | "intermediate") => void;
 }
 
 const SimpleTable: React.FC<SimpleTableProps> = ({
   customerDetails,
   selectAll,
   customerName,
+  handleIntermediateChange,
 }) => {
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [sortConfig, setSortConfig] = useState({
@@ -28,11 +30,13 @@ const SimpleTable: React.FC<SimpleTableProps> = ({
   const data = customerDetails?.invoices?.data?.invoices || [];
 
   const handleCheckboxChange = (id: string) => {
-    setSelectedRows((prevSelected) =>
-      prevSelected.includes(id)
-        ? prevSelected.filter((rowId) => rowId !== id)
-        : [...prevSelected, id]
-    );
+    console.log(id, "id");
+    const rowsSelected = selectedRows.includes(id)
+      ? selectedRows.filter((rowId) => rowId !== id)
+      : [...selectedRows, id];
+
+    setSelectedRows(rowsSelected);
+    invoiceCheckboxMethod(rowsSelected.length);
   };
 
   useEffect(() => {
@@ -42,17 +46,26 @@ const SimpleTable: React.FC<SimpleTableProps> = ({
         .map((row: any) => row.invoiceId);
       setSelectedRows(allInvoiceIds);
     } else {
-      setSelectedRows((prevSelected) =>
-        prevSelected.filter(
-          (rowId) =>
-            !data.some(
-              (row: any) =>
-                row.invoiceId === rowId && row.customerName === customerName
-            )
-        )
-      );
+      setSelectedRows([]);
     }
-  }, [selectAll, customerName, data]);
+  }, [selectAll]);
+
+  const invoiceCheckboxMethod = (selectedCount: any) => {
+    const totalInvoices = data.length;
+    // const selectedCount = selectedRows.length;
+
+    if (selectedCount > 0 && selectedCount < totalInvoices) {
+      handleIntermediateChange("intermediate");
+    } else if (selectedCount === totalInvoices) {
+      handleIntermediateChange(true);
+    } else {
+      handleIntermediateChange(false);
+    }
+  };
+
+  // useEffect(() => {
+  //   invoiceCheckboxMethod();
+  // }, [selectedRows]);
 
   const requestSort = (key: string) => {
     let direction = "ascending";
@@ -62,7 +75,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({
     setSortConfig({ key, direction });
   };
 
-  const sortedData = React.useMemo(() => {
+  const sortedData = useMemo(() => {
     let sortableItems = [...data];
     if (sortConfig.key) {
       sortableItems.sort((a, b) => {
@@ -90,7 +103,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({
   };
 
   return (
-    <div className="table-container">
+    <div className={styles.tableContainer}>
       <table>
         <thead>
           <tr>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./accordion.module.scss";
@@ -24,13 +24,26 @@ const Accordion: React.FC<AccordionProps> = ({
     ""
   );
   const [isChecked, setIsChecked] = useState(false);
-  const handleIconClick = (customerId: string | number) => {
-    setExpandedAccordion(expandedAccordion === customerId ? "" : customerId);
+  const [isIndeterminate, setIsIndeterminate] = useState(false);
+
+  const handleCheckboxChange = (checked: boolean | "intermediate") => {
+    console.log("==> Checked:", checked);
+
+    if (checked === "intermediate") {
+      setIsIndeterminate(true);
+      // setIsChecked(false);
+    } else {
+      setIsChecked(checked);
+      setIsIndeterminate(false);
+    }
   };
 
-  const handleCheckboxChange = (checked: boolean) => {
-    setIsChecked(checked);
-  };
+  const handleIconClick = useCallback(
+    (customerId: string | number) => {
+      setExpandedAccordion(expandedAccordion === customerId ? "" : customerId);
+    },
+    [expandedAccordion, id]
+  );
 
   return (
     <div className={styles.accordionContainer}>
@@ -39,6 +52,7 @@ const Accordion: React.FC<AccordionProps> = ({
           <CheckboxComponent
             checked={isChecked}
             onChange={(e) => handleCheckboxChange(e.target.checked)}
+            indeterminate={isIndeterminate}
           />
         )}
         {children}
@@ -55,6 +69,7 @@ const Accordion: React.FC<AccordionProps> = ({
           <SimpleTable
             customerDetails={customerDetails}
             selectAll={isChecked}
+            handleIntermediateChange={handleCheckboxChange}
             customerName={customerName}
           />
         </div>

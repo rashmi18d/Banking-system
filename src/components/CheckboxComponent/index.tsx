@@ -1,27 +1,37 @@
-import React from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 import styles from "./checkbox.module.scss";
 
-interface CheckBoxInterface {
-  checked: boolean;
-  onChange: () => void; // Pass the onChange handler from the parent
+interface CheckboxComponentProps {
+  checked: boolean | string;
+  indeterminate?: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const CheckboxComponent: React.FC<CheckBoxInterface> = ({
-  checked,
-  onChange,
-}) => {
-  return (
-    <div>
-      <label>
-        <input
-          className={styles.checkboxInputContainer}
-          type="checkbox"
-          checked={checked} // Use the passed checked prop
-          onChange={onChange} // Use the passed onChange handler
-        />
-      </label>
-    </div>
-  );
-};
+const CheckboxComponent = forwardRef<HTMLInputElement, CheckboxComponentProps>(
+  ({ checked, indeterminate = false, onChange }, ref) => {
+    const internalRef = useRef<HTMLInputElement | null>(null);
+
+    useEffect(() => {
+      const currentRef =
+        (ref as React.RefObject<HTMLInputElement>) || internalRef;
+      if (currentRef?.current) {
+        currentRef.current.indeterminate = indeterminate;
+      }
+      console.log("checkbox", checked);
+    }, [indeterminate]);
+
+    return (
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        className={`${styles.checkboxInputContainer} ${
+          indeterminate ? styles.indeterminate : ""
+        }`}
+        ref={ref || internalRef}
+      />
+    );
+  }
+);
 
 export default CheckboxComponent;
